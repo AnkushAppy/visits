@@ -7,3 +7,16 @@ before_install:
 
 script:
 - docker run ankushappy/visits python test.py
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "visits"
+  env: "Visits-env"
+  bucket_name: "elasticbeanstalk-us-east-2-863454810975"
+  bucket_path: "visits"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
